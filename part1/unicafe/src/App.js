@@ -4,20 +4,20 @@ const Header = ({ text }) => <h1>{text}</h1>
 
 const Button = ({ handleClick, text }) => <button onClick={handleClick}>{text}</button>
 
-const Stat = ({ text, stat }) => <div>{text} {stat}</div>
+const StatisticLine = ({ text, value }) => <div>{text} {value}</div>
 
-const Statistics = ({ goodText, goodStat, neutralText, neutralStat, badText, badStat, allText, averageText, positiveText }) => {
-  if (goodStat == 0 && neutralStat == 0 && badStat == 0) {
+const Statistics = ({ goodText, goodValue, neutralText, neutralValue, badText, badValue, allText, averageText, positiveText }) => {
+  if (goodValue == 0 && neutralValue == 0 && badValue == 0) {
     return <div>No feedback given</div>
   }
   return (
   <div>
-    <Stat text={goodText} stat={goodStat} />
-    <Stat text={neutralText} stat={neutralStat} />
-    <Stat text={badText} stat={badStat} />
-    <Stat text={allText} stat={goodStat + neutralStat + badStat} />
-    <Stat text={averageText} stat={(goodStat - badStat) / (goodStat + neutralStat + badStat)} />
-    <Stat text={positiveText} stat={100 * (goodStat) / (goodStat + neutralStat + badStat) + " %"} />
+    <StatisticLine text={goodText} value={goodValue} />
+    <StatisticLine text={neutralText} value={neutralValue} />
+    <StatisticLine text={badText} value={badValue} />
+    <StatisticLine text={allText} value={goodValue + neutralValue + badValue} />
+    <StatisticLine text={averageText} value={(goodValue - badValue) / (goodValue + neutralValue + badValue)} />
+    <StatisticLine text={positiveText} value={100 * (goodValue) / (goodValue + neutralValue + badValue) + " %"} />
   </div>
   )
 }
@@ -41,11 +41,11 @@ const App = () => {
       <Header text="statistics" />
       <Statistics 
         goodText="good"
-        goodStat={good}
+        goodValue={good}
         neutralText="neutral"
-        neutralStat={neutral}
+        neutralValue={neutral}
         badText="bad"
-        badStat={bad}
+        badValue={bad}
         allText="all"
         averageText="average"
         positiveText="positive"
