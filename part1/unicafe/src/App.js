@@ -4,21 +4,21 @@ const Header = ({ text }) => <h1>{text}</h1>
 
 const Button = ({ handleClick, text }) => <button onClick={handleClick}>{text}</button>
 
-const StatisticLine = ({ text, value }) => <div>{text} {value}</div>
+const StatisticLine = ({ text, value }) => <tr><td>{text}</td><td>{value}</td></tr>
 
 const Statistics = ({ goodText, goodValue, neutralText, neutralValue, badText, badValue, allText, averageText, positiveText }) => {
   if (goodValue == 0 && neutralValue == 0 && badValue == 0) {
     return <div>No feedback given</div>
   }
   return (
-  <div>
-    <StatisticLine text={goodText} value={goodValue} />
-    <StatisticLine text={neutralText} value={neutralValue} />
-    <StatisticLine text={badText} value={badValue} />
-    <StatisticLine text={allText} value={goodValue + neutralValue + badValue} />
-    <StatisticLine text={averageText} value={(goodValue - badValue) / (goodValue + neutralValue + badValue)} />
-    <StatisticLine text={positiveText} value={100 * (goodValue) / (goodValue + neutralValue + badValue) + " %"} />
-  </div>
+    <table>
+      <StatisticLine text={goodText} value={goodValue} />
+      <StatisticLine text={neutralText} value={neutralValue} />
+      <StatisticLine text={badText} value={badValue} />
+      <StatisticLine text={allText} value={goodValue + neutralValue + badValue} />
+      <StatisticLine text={averageText} value={(goodValue - badValue) / (goodValue + neutralValue + badValue)} />
+      <StatisticLine text={positiveText} value={100 * (goodValue) / (goodValue + neutralValue + badValue) + " %"} />
+    </table>
   )
 }
 
