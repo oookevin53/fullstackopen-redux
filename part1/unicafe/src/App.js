@@ -7,7 +7,7 @@ const Button = ({ handleClick, text }) => <button onClick={handleClick}>{text}</
 const StatisticLine = ({ text, value }) => <tr><td>{text}</td><td>{value}</td></tr>
 
 const Statistics = ({ goodText, goodValue, neutralText, neutralValue, badText, badValue, allText, averageText, positiveText }) => {
-  if (goodValue == 0 && neutralValue == 0 && badValue == 0) {
+  if (goodValue === 0 && neutralValue === 0 && badValue === 0) {
     return <div>No feedback given</div>
   }
   return (
