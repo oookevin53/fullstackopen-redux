@@ -2,6 +2,8 @@ import { useState } from 'react'
 
 const Button = ({ handleClick, text }) => <button onClick={handleClick}>{text}</button>
 
+const Counter = ({ count }) => <div>has {count} votes</div>
+
 const App = () => {
   const anecdotes = [
     'If it hurts, do it more often.',
@@ -15,8 +17,14 @@ const App = () => {
   ]
    
   const [selected, setSelected] = useState(0)
+  const [counts, setCounts] = useState(new Array(anecdotes.length).fill(0))
 
   const randomNumber = (max) => () => setSelected(Math.floor(Math.random() * max))
+  const addVote = () => () => {
+    const copy = [...counts]
+    copy[selected] += 1
+    setCounts(copy)
+  }
 
   return (
     <>
@@ -24,6 +32,10 @@ const App = () => {
         {anecdotes[selected]}
       </div>
       <div>
+        <Counter count={counts[selected]} />
+      </div>
+      <div>
+        <Button handleClick={addVote()} text="vote" />
         <Button handleClick={randomNumber(anecdotes.length)} text="next ancedote" />
       </div>
     </>
